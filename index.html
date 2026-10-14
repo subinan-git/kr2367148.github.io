@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>천천히, 멀리 — 슬로우러닝 & 트레킹</title>
+  <meta name="description" content="슬로우러닝과 한 달에 한 번 떠나는 트레킹 기록" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="#top" class="logo">천천히, 멀리</a>
+    <nav>
+      <a href="#about">소개</a>
+      <a href="#running">슬로우러닝</a>
+      <a href="#trekking">트레킹</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- 히어로 -->
+    <section class="hero">
+      <svg class="hero-mountains" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+        <path class="m-back" d="M0 300 L0 190 L160 90 L300 170 L460 60 L640 180 L800 100 L980 190 L1200 80 L1200 300 Z" />
+        <path class="m-front" d="M0 300 L0 240 L200 160 L380 230 L560 150 L760 240 L940 170 L1200 230 L1200 300 Z" />
+      </svg>
+      <div class="hero-inner">
+        <p class="eyebrow">Slow Running · Monthly Trekking</p>
+        <h1>숨이 차지 않는 속도로,<br />오래 그리고 멀리.</h1>
+        <p class="lead">대화할 수 있는 속도로 달리고, 한 달에 한 번은 산길을 걷습니다.<br />기록보다 꾸준함을 쌓아가는 공간이에요.</p>
+        <div class="hero-stats">
+          <div><strong id="heroRuns">0</strong><span>이번 달 러닝</span></div>
+          <div><strong id="heroKm">0</strong><span>누적 km</span></div>
+          <div><strong id="heroTreks">0</strong><span>올해 트레킹</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 소개 -->
+    <section id="about" class="section">
+      <h2 class="section-title">소개</h2>
+      <div class="about-grid">
+        <article class="card">
+          <div class="card-icon">🏃</div>
+          <h3>슬로우러닝</h3>
+          <p>웃으며 대화할 수 있을 만큼의 속도, 니코니코 페이스로 달립니다. 빠르게보다 다치지 않고 오래 달리는 것이 목표예요.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">⛰️</div>
+          <h3>월간 트레킹</h3>
+          <p>매달 한 번, 새로운 산과 길을 찾아 걷습니다. 열두 달의 길을 하나씩 채워가는 중이에요.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🌱</div>
+          <h3>나의 원칙</h3>
+          <ul class="principles">
+            <li>오늘보다 내일 더 달리고 싶게</li>
+            <li>숫자보다 몸의 감각을 믿기</li>
+            <li>쉬는 것도 훈련의 일부</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 슬로우러닝 -->
+    <section id="running" class="section">
+      <h2 class="section-title">슬로우러닝 기록</h2>
+
+      <div class="stats-row">
+        <div class="stat"><span class="stat-label">총 러닝</span><strong id="statRuns">0</strong><span class="stat-unit">회</span></div>
+        <div class="stat"><span class="stat-label">총 거리</span><strong id="statKm">0</strong><span class="stat-unit">km</span></div>
+        <div class="stat"><span class="stat-label">총 시간</span><strong id="statTime">0</strong><span class="stat-unit">시간</span></div>
+        <div class="stat"><span class="stat-label">평균 페이스</span><strong id="statPace">-</strong><span class="stat-unit">/km</span></div>
+      </div>
+
+      <div class="run-layout">
+        <form id="runForm" class="card run-form">
+          <h3 id="runFormTitle">오늘의 러닝 추가</h3>
+          <label>날짜
+            <input type="date" name="date" required />
+          </label>
+          <div class="form-row">
+            <label>거리 (km)
+              <input type="number" name="distance" step="0.01" min="0.1" placeholder="5.0" required />
+            </label>
+            <label>시간 (분)
+              <input type="number" name="minutes" step="1" min="1" placeholder="40" required />
+            </label>
+          </div>
+          <label>컨디션
+            <div class="mood-picker">
+              <input type="radio" name="mood" id="mood1" value="😌" checked /><label for="mood1" title="편안">😌</label>
+              <input type="radio" name="mood" id="mood2" value="😊" /><label for="mood2" title="좋음">😊</label>
+              <input type="radio" name="mood" id="mood3" value="😅" /><label for="mood3" title="힘듦">😅</label>
+              <input type="radio" name="mood" id="mood4" value="🥵" /><label for="mood4" title="지침">🥵</label>
+            </div>
+          </label>
+          <label>메모
+            <input type="text" name="memo" maxlength="60" placeholder="한강 한 바퀴, 바람 좋았음" />
+          </label>
+          <div class="form-actions">
+            <button type="button" class="btn ghost" id="runCancel" hidden>취소</button>
+            <button type="submit" class="btn" id="runSubmit">기록하기</button>
+          </div>
+        </form>
+
+        <div class="card run-list-wrap">
+          <div class="list-head">
+            <h3>최근 러닝</h3>
+            <span class="pace-tip" id="paceTip"></span>
+          </div>
+          <div class="week-bars" id="weekBars" aria-label="최근 7일 거리"></div>
+          <ul id="runList" class="run-list"></ul>
+          <p id="runEmpty" class="empty">아직 기록이 없어요. 첫 러닝을 남겨보세요!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 트레킹 -->
+    <section id="trekking" class="section">
+      <div class="trek-head">
+        <h2 class="section-title">한 달에 한 번, 트레킹</h2>
+        <div class="year-switch">
+          <button type="button" id="prevYear" aria-label="이전 해">‹</button>
+          <span id="yearLabel">2026</span>
+          <button type="button" id="nextYear" aria-label="다음 해">›</button>
+        </div>
+      </div>
+
+      <div class="trek-progress">
+        <div class="progress-bar"><div id="trekProgress"></div></div>
+        <span id="trekProgressText">0 / 12</span>
+      </div>
+
+      <div id="trekGrid" class="trek-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>천천히 가도 멈추지만 않으면 된다.</p>
+    <small>© <span id="year"></span> subinan0508</small>
+  </footer>
+
+  <!-- 트레킹 입력 다이얼로그 -->
+  <dialog id="trekDialog">
+    <form method="dialog" id="trekForm">
+      <h3 id="trekDialogTitle">트레킹 기록</h3>
+      <label>장소 / 산 이름
+        <input type="text" name="place" maxlength="30" placeholder="북한산 백운대" required />
+      </label>
+      <div class="form-row">
+        <label>날짜
+          <input type="date" name="date" required />
+        </label>
+        <label>거리 (km)
+          <input type="number" name="distance" step="0.1" min="0" placeholder="8.5" />
+        </label>
+      </div>
+      <label>난이도
+        <select name="level">
+          <option value="쉬움">쉬움</option>
+          <option value="보통" selected>보통</option>
+          <option value="어려움">어려움</option>
+        </select>
+      </label>
+      <label>한 줄 후기
+        <textarea name="note" rows="2" maxlength="80" placeholder="정상에서 본 운해가 최고였다"></textarea>
+      </label>
+      <div class="dialog-actions">
+        <button type="button" class="btn ghost danger" id="trekDelete">삭제</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn ghost" id="trekCancel">취소</button>
+        <button type="submit" class="btn">저장</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
